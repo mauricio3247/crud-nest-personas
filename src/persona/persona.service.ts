@@ -110,7 +110,7 @@ export class PersonaService {
   async queryFilterBy(queryPersonaDto:QueryPersonaDto):Promise<IPersonaDocument[]> {
     let query = queryPersonaDto;
     if(queryPersonaDto.direcciones && queryPersonaDto.direcciones.length >0) {
-      query = Object.assign({direcciones: {$regex: `.*${queryPersonaDto.direcciones}.*`}})
+      query = Object.assign(query, { direcciones: {$regex: `.*${queryPersonaDto.direcciones}.*`}})
     }
     return this.personaModel.find( query)
   }
